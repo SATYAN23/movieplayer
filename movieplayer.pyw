@@ -3,13 +3,16 @@ from pygame.locals import *
 import moviepy
 from moviepy import editor
 pygame.init()
-width = 500
-height = 500
-screen = pygame.display.set_mode((width,height),RESIZABLE)
+width = 1000
+height = 1000
+screen = pygame.display.set_mode((width,height),FULLSCREEN)
 
 
-start_image = pygame.image.load("antman.png").convert_alpha()
-exit_image = pygame.image.load("gravity.png").convert_alpha()
+antman_image = pygame.image.load("antman.png").convert_alpha()
+gravity_image = pygame.image.load("gravity.png").convert_alpha()
+interstellar_image = pygame.image.load("interstellar.png").convert_alpha()
+the_martian_image = pygame.image.load("the martian.png").convert_alpha()
+
 
 
 
@@ -38,8 +41,10 @@ class button:
         screen.blit(self.image, (self.rect.x,self.rect.y))
         return action
 
-gravity_button = button(50,100, start_image, 0.051)
-antman_button  = button(250,100, exit_image, 0.051)                  
+gravity_button = button(300,100, gravity_image, 0.7)
+antman_button  = button(100,100, antman_image, 0.7)
+interstellar_button =  button(100,400, interstellar_image, 0.7)
+the_martian_button =  button(300,400, the_martian_image,0.7)
                     
 run = True
 while run:
@@ -51,6 +56,12 @@ while run:
     if antman_button.draw():
         video = moviepy.editor.VideoFileClip("antman.mp4")
         video.preview()
+    if interstellar_button.draw():
+        video = moviepy.editor.VideoFileClip("interstellar.mp4")
+        video.preview()
+    if the_martian_button.draw():
+        video = moviepy.editor.VideoFileClip("the martian.mp4")
+        video.preview()
         
     
     for event in pygame.event.get():
@@ -61,4 +72,4 @@ while run:
 
 
     pygame.display.update()
-pygame.quit()    
+pygame.quit() 
